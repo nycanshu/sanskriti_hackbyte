@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "43440781583",
+    "project_id": "sanskriti-by-okay-anshu",
+    "storage_bucket": "sanskriti-by-okay-anshu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:43440781583:android:3334a448a63bc7351aa67a",
+        "android_client_info": {
+          "package_name": "com.example.sanskriti"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwhUYTazWVbnUhD2PbgQ-PxKHPviMD3Zc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
