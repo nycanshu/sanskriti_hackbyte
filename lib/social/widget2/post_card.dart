@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import '../../model2/user.dart'as model;
+import '../../model2/user.dart' as model;
 import '../comments_screen.dart';
 import '../resources/firestore_methods.dart';
 import '../user_provider.dart';
@@ -61,15 +61,16 @@ class _PostCardState extends State<PostCard> {
 
   @override
   Widget build(BuildContext context) {
-    final model.User user = Provider.of<UserProvider>(context).getUser as model.User;
+    final model.User user =
+        Provider.of<UserProvider>(context).getUser as model.User;
     final width = MediaQuery.of(context).size.width;
 
     return Container(
       // boundary needed for web
       decoration: BoxDecoration(
         border: Border.all(
-          // color: width > webScreenSize ? secondaryColor : mobileBackgroundColor,
-        ),
+            // color: width > webScreenSize ? secondaryColor : mobileBackgroundColor,
+            ),
         color: mobileBackgroundColor,
       ),
       padding: const EdgeInsets.symmetric(
@@ -159,7 +160,7 @@ class _PostCardState extends State<PostCard> {
             onDoubleTap: () {
               FireStoreMethods().likePost(
                 widget.snap['postId'].toString(),
-                user!.uid,
+                user.uid,
                 widget.snap['likes'],
               );
               setState(() {

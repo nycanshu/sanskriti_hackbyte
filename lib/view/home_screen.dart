@@ -8,8 +8,8 @@ import 'package:sanskriti/view/profile_page.dart';
 import 'package:sanskriti/view/welcome_page.dart';
 import '../dialogflow/Chat_Module/ChatBot.dart';
 import '../utils/text_styles.dart';
-import '../yuvaraj_screen/add_post_screen.dart';
-import '../yuvaraj_screen/feed_screen.dart';
+import '../social/add_post_screen.dart';
+import '../social/feed_screen.dart';
 import 'explore_page.dart';
 
 import 'homepageContent.dart';

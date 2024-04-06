@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:sanskriti/yuvaraj_screen/resources/auth_methods.dart';
+import 'package:sanskriti/social/resources/auth_methods.dart';
 
 import '../model2/user.dart ';
 

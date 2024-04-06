@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:sanskriti/controller/auth_controller.dart';
 import 'package:sanskriti/firebase_options.dart';
 import 'package:sanskriti/view/welcome_page.dart';
-import 'package:sanskriti/yuvaraj_screen/user_provider.dart';
+import 'package:sanskriti/social/user_provider.dart';
 import 'view/Admin/admin_home.dart';
 
 void main() async {
@@ -14,13 +14,13 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(
-      MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (_) => UserProvider()),
-          // Add other providers here as needed
-        ],
-        child: const MyApp(),
-      ),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => UserProvider()),
+        // Add other providers here as needed
+      ],
+      child: const MyApp(),
+    ),
   );
 }
 
