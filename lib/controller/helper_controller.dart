@@ -114,7 +114,7 @@ class HelperController extends GetxController {
       "image": "images/ongoin1.jpg",
       "name": "6th Global Film",
       "location": "Mumbai",
-      "date": "02/03/2024",
+      "date": "06/04/2024",
       "link":
           "https://utsav.gov.in/view-event/6th-global-film-tourism-conclave-3"
     },
@@ -122,7 +122,7 @@ class HelperController extends GetxController {
       "image": "images/ongoing3.jpg",
       "name": "Rajim Kumbh Mela",
       "location": "Chhattisgarh",
-      "date": "02/03/2024",
+      "date": "07/04/2024",
       "link": "https://www.globalhighlights.com/india/fesitival-kumbh-mela"
     },
   ];
@@ -138,7 +138,7 @@ class HelperController extends GetxController {
       "image": "images/veltech_event.jpg",
       "name": "Cultural Event",
       "location": "Veltech, Chennai",
-      "date": "18/03/2024",
+      "date": "18/04/2024",
       "link":
           "https://www.veltech.edu.in/events/vinayagar-chaturthi-celebrations/"
     },

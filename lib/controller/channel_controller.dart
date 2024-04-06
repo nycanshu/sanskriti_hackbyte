@@ -1,8 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import '../model/cannelmodel.dart';
+// import '../model/channel_model.dart'; // Assuming model file name is corrected to 'channel_model.dart'
 
 class ChannelController extends GetxController {
   final TextEditingController channelNameController = TextEditingController();
@@ -11,13 +12,29 @@ class ChannelController extends GetxController {
 
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  // Observable list to hold channels
-  RxList<ChannelModel> channels = <ChannelModel>[].obs;
+  // Observable lists to hold channels
+  RxList<ChannelModel> userChannels = <ChannelModel>[].obs;
+  RxList<ChannelModel> allChannels = <ChannelModel>[].obs;
+  RxList<ChannelModel> selectedChannels = <ChannelModel>[].obs;
 
+  String currentUserID = ''; // Current user's ID
+
+  @override
   void onInit() {
     super.onInit();
-    // Call getChannels() when the controller is initialized
-    getChannels();
+    // Initialize controller
+    initialize();
+  }
+
+  // Initialize controller
+  void initialize() async {
+    // Get the current user's ID
+    currentUserID = FirebaseAuth.instance.currentUser?.uid ?? '';
+    // Fetch user's channels and all channels
+    await fetchUserChannels();
+    await fetchAllChannels();
+    // Initially select user's channels
+    selectUserChannels();
   }
 
   // Function to create a channel
@@ -26,8 +43,11 @@ class ChannelController extends GetxController {
       String name = channelNameController.text.trim();
       String description = channelDescriptionController.text.trim();
 
-      ChannelModel newChannel =
-          ChannelModel(name: name, description: description);
+      ChannelModel newChannel = ChannelModel(
+        name: name,
+        description: description,
+        adminID: currentUserID, // Set admin ID to current user's ID
+      );
 
       // Add the new channel to Firestore
       await _firestore.collection('channels').add(newChannel.toMap());
@@ -36,7 +56,7 @@ class ChannelController extends GetxController {
       channelNameController.clear();
       channelDescriptionController.clear();
 
-      // Show success message or navigate to another screen
+      // Show success message
       Get.snackbar('Success', 'Channel created successfully');
     } catch (e) {
       // Handle errors
@@ -45,25 +65,59 @@ class ChannelController extends GetxController {
     }
   }
 
-  // Function to retrieve all channels
-  void getChannels() async {
+  // Function to retrieve channels where the current user is admin
+  Future<void> fetchUserChannels() async {
     try {
-      // Get all channels from Firestore
-      QuerySnapshot querySnapshot =
-          await _firestore.collection('channels').get();
+      // Get channels where admin_id matches the current user's ID
+      QuerySnapshot querySnapshot = await _firestore
+          .collection('channels')
+          .where('admin_id', isEqualTo: currentUserID)
+          .get();
 
-      // Convert each document to ChannelModel and store in the channels list
-      channels.assignAll(querySnapshot.docs.map(
+      // Convert each document to ChannelModel and store in the userChannels list
+      userChannels.assignAll(querySnapshot.docs.map(
           (doc) => ChannelModel.fromMap(doc.data() as Map<String, dynamic>)));
 
       // Show channels in the console
-      channels.forEach((channel) {
-        print('Channel: ${channel.name}, ${channel.description}');
+      userChannels.forEach((channel) {
+        print('User Channel: ${channel.name}, ${channel.description}');
       });
     } catch (e) {
       // Handle errors
-      print('Error getting channels: $e');
-      Get.snackbar('Error', 'Failed to get channels');
+      print('Error getting user channels: $e');
+      Get.snackbar('Error', 'Failed to get user channels');
     }
+  }
+
+  // Function to retrieve all channels
+  Future<void> fetchAllChannels() async {
+    try {
+      // Get all channels
+      QuerySnapshot querySnapshot =
+          await _firestore.collection('channels').get();
+
+      // Convert each document to ChannelModel and store in the allChannels list
+      allChannels.assignAll(querySnapshot.docs.map(
+          (doc) => ChannelModel.fromMap(doc.data() as Map<String, dynamic>)));
+
+      // Show channels in the console
+      // allChannels.forEach((channel) {
+      //   print('All Channel: ${channel.name}, ${channel.description}');
+      // });
+    } catch (e) {
+      // Handle errors
+      print('Error getting all channels: $e');
+      Get.snackbar('Error', 'Failed to get all channels');
+    }
+  }
+
+  // Function to select user's channels
+  void selectUserChannels() {
+    selectedChannels.assignAll(userChannels);
+  }
+
+  // Function to select all channels
+  void selectAllChannels() {
+    selectedChannels.assignAll(allChannels);
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sanskriti/view/sign_in.dart';
 import 'package:sanskriti/view/home_screen.dart';
+import 'package:sanskriti/view/welcome_page.dart';
 
 class AuthController extends GetxController {
   final auth = FirebaseAuth.instance;
@@ -25,7 +26,7 @@ class AuthController extends GetxController {
         Get.offAll(const HomePage());
       } else {
         // If no user is authenticated, navigate to Signin
-        Get.offAll(const Signin());
+        Get.offAll(const WelcomePage());
       }
     });
   }
@@ -110,6 +111,6 @@ class AuthController extends GetxController {
   // Logout code
   void logOut() async {
     await auth.signOut();
-    Get.offAll(const Signin());
+    Get.offAll(const WelcomePage());
   }
 }

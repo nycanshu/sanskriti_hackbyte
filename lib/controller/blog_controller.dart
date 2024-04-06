@@ -11,7 +11,6 @@ class BlogController extends GetxController {
 
   @override
   void onInit() {
-    // Call fetchBlogs() when the controller initializes
     fetchBlogs();
     super.onInit();
   }

@@ -21,6 +21,11 @@ class FeedBackController extends GetxController {
   }
 
   Future<void> sendFeedback(String name, String email, String feedback) async {
+    if (name.isEmpty || email.isEmpty || feedback.isEmpty) {
+      // Show error message if any of the fields are empty
+      Get.snackbar('Error', 'All fields are required');
+      return;
+    }
     FeedbackModel newFeedback = FeedbackModel(
       name: name,
       email: email,

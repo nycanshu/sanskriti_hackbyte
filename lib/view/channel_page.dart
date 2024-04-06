@@ -4,11 +4,12 @@ import 'package:sanskriti/view/create_channel.dart';
 import 'package:sanskriti/controller/channel_controller.dart';
 
 class ChannelPage extends StatelessWidget {
-  final ChannelController channelController = Get.put(ChannelController());
+  ChannelController channelController = Get.put(ChannelController());
 
   Future<void> _refreshChannels() async {
     // Call getChannels() when refreshing
-    channelController.getChannels();
+    channelController.fetchUserChannels();
+    channelController.fetchAllChannels();
   }
 
   @override
@@ -19,6 +20,7 @@ class ChannelPage extends StatelessWidget {
         body: RefreshIndicator(
           onRefresh: _refreshChannels,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 padding: const EdgeInsets.symmetric(vertical: 6.5),
@@ -30,7 +32,7 @@ class ChannelPage extends StatelessWidget {
                 ),
                 child: const TextField(
                   decoration: InputDecoration(
-                    hintText: 'Search Channels',
+                    hintText: 'Search all Channels',
                     border: InputBorder.none,
                     contentPadding: EdgeInsets.symmetric(horizontal: 20),
                     prefixIcon: Icon(Icons.search),
@@ -40,37 +42,48 @@ class ChannelPage extends StatelessWidget {
               const SizedBox(height: 20),
               Row(
                 children: [
-                  const Text(
-                    "Channels",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  Text(
+                    'Your Channels',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      // Display dropdown menu
+                      showChannelsMenu(context);
+                    },
+                    icon: const Icon(Icons.arrow_drop_down),
                   ),
                   const Spacer(),
                   IconButton(
+                    icon: const Icon(Icons.add),
                     onPressed: () {
                       Get.to(const CreateChannel());
                     },
-                    icon: const Icon(
-                      Icons.add_circle_outline_rounded,
-                      weight: 5,
-                    ),
-                  )
+                  ),
                 ],
               ),
               const SizedBox(height: 20),
               Expanded(
                 child: Obx(() {
                   // Use Obx to update UI when channels list changes
-                  if (channelController.channels.isEmpty) {
+                  if (channelController.selectedChannels.isEmpty) {
                     return const Center(child: CircularProgressIndicator());
                   } else {
                     return ListView.builder(
-                      itemCount: channelController.channels.length,
+                      itemCount: channelController.selectedChannels.length,
                       itemBuilder: (context, index) {
-                        final channel = channelController.channels[index];
-                        return ListTile(
-                          title: Text(channel.name),
-                          subtitle: Text(channel.description),
-                          trailing: const Icon(Icons.arrow_forward_ios),
+                        final channel =
+                            channelController.selectedChannels[index];
+                        return InkWell(
+                          onTap: () {},
+                          child: ListTile(
+                            title: Text(channel.name),
+                            subtitle: Text(channel.description),
+                            trailing: const Icon(Icons.arrow_forward_ios),
+                          ),
                         );
                       },
                     );
@@ -81,6 +94,36 @@ class ChannelPage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  // Function to display dropdown menu for selecting channels
+  void showChannelsMenu(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              title: Text('Your Channels'),
+              onTap: () {
+                // Close modal and update selected channels
+                Navigator.pop(context);
+                channelController.selectUserChannels();
+              },
+            ),
+            ListTile(
+              title: Text('All Channels'),
+              onTap: () {
+                // Close modal and update selected channels
+                Navigator.pop(context);
+                channelController.selectAllChannels();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
