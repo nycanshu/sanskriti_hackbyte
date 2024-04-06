@@ -244,4 +244,28 @@ class HelperController extends GetxController {
           "Hindu gods' heavenly residence embellished with complex designs."
     },
   ];
+
+  List<Map<String, dynamic>> questiondata = [
+    {
+      "question_id": "1",
+      "question": "What is mythology?",
+      "reply": [
+        {
+          "reply_id": "1",
+          "reply":
+              "Mythology is a collection of myths or stories that belong to a particular culture or religion. These myths often explain the origins of the world, natural phenomena, and the customs and beliefs of a society. Mythology can also include the stories of gods, goddesses, heroes, and other supernatural beings."
+        },
+        {
+          "reply_id": "2",
+          "reply":
+              "Mythology is a way for people to make sense of the world around them and to understand their place in the universe. It can provide moral lessons, explain the unknown, and offer comfort in times of uncertainty. Mythology is an important part of many cultures and has been passed down through generations in the form of stories, art, and rituals."
+        },
+        {
+          "reply_id": "3",
+          "reply":
+              "Mythology is a way for people to connect with the divine and to explore the mysteries of existence. It can help us to understand the complexities of human nature and to find meaning in our lives. Mythology is a powerful tool for storytelling and can inspire creativity, imagination, and spiritual growth."
+        },
+      ]
+    },
+  ];
 }

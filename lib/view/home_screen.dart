@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
       const HomePageContent(),
       const ExplorePage(),
       const ProfilePage(),
-      ChannelPage(),
+      CommunityScreen(),
     ];
 
     return Scaffold(
