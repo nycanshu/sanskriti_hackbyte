@@ -2,10 +2,17 @@
 // import 'package:get/get.dart';
 // import 'package:sanskriti/controller/community_controller.dart';
 // import 'package:sanskriti/helper/question_ui.dart';
+<<<<<<< HEAD
 
 // class CommunityScreen extends StatelessWidget {
 //   const CommunityScreen({Key? key}) : super(key: key);
 
+=======
+//
+// class CommunityScreen extends StatelessWidget {
+//   const CommunityScreen({Key? key}) : super(key: key);
+//
+>>>>>>> f93af2d67410b38dbdc740e084deeda103b387a8
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(

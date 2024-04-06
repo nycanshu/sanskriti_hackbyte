@@ -3,11 +3,13 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:sanskriti/controller/auth_controller.dart';
 import 'package:sanskriti/utils/app_colors.dart';
-import 'package:sanskriti/view/channel_page.dart';
 import 'package:sanskriti/view/drawer_pages/general_info.dart';
 import 'package:sanskriti/view/profile_page.dart';
 import 'package:sanskriti/view/welcome_page.dart';
+import '../dialogflow/Chat_Module/ChatBot.dart';
 import '../utils/text_styles.dart';
+import '../yuvaraj_screen/add_post_screen.dart';
+import '../yuvaraj_screen/feed_screen.dart';
 import 'explore_page.dart';
 
 import 'homepageContent.dart';
@@ -36,7 +38,10 @@ class _HomePageState extends State<HomePage> {
       const HomePageContent(),
       const ExplorePage(),
       const ProfilePage(),
-      CommunityScreen(),
+      // CommunityScreen(),
+      const FeedScreen(),
+      const AddPostScreen(),
+      ChatBotScreen()
     ];
 
     return Scaffold(
@@ -222,7 +227,15 @@ class _HomePageState extends State<HomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.message_rounded),
-            label: 'Channel',
+            label: 'Community',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.post_add),
+            label: 'post',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.chat),
+            label: 'ChatBot',
           ),
         ],
         selectedItemColor: AppColors.blue,
