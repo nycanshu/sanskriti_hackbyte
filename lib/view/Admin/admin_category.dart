@@ -5,7 +5,7 @@ import 'package:sanskriti/view/Admin/components/culture_admin.dart';
 import 'package:sanskriti/view/Admin/components/ebook_admin.dart';
 import 'package:sanskriti/view/Admin/components/education_admin.dart';
 import 'package:sanskriti/view/Admin/components/event_admin.dart';
-import 'package:sanskriti/view/Admin/components/feedback_admin.dart';
+// import 'package:sanskriti/view/Admin/components/feedback_admin.dart';
 
 import 'components/admin_feedback.dart';
 
@@ -23,19 +23,19 @@ class AdminCategoriesPage extends StatelessWidget {
     // Define different body content based on categoriesName
     switch (categoriesName) {
       case 'Education':
-        bodyContent = EducationAdmin();
+        bodyContent = const EducationAdmin();
         break;
       case 'E-books':
-        bodyContent = EbookAdmin();
+        bodyContent = const EbookAdmin();
         break;
       case 'Events':
-        bodyContent = EventAdmin();
+        bodyContent = const EventAdmin();
         break;
       case 'Cultures':
-        bodyContent = CultureAdmin();
+        bodyContent = const CultureAdmin();
         break;
       case 'Blogs':
-        bodyContent = BlogAdmin();
+        bodyContent = const BlogAdmin();
         break;
       case 'Feedback':
         bodyContent = AdminFeedbackContainer();

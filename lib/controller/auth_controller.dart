@@ -2,8 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sanskriti/view/sign_in.dart';
-
-import '../view/home_screen.dart';
+import 'package:sanskriti/view/home_screen.dart';
 
 class AuthController extends GetxController {
   final auth = FirebaseAuth.instance;
@@ -12,7 +11,26 @@ class AuthController extends GetxController {
   final passwordController = TextEditingController();
   final userName = TextEditingController();
 
-//signup code
+  // Initialize currentUser as a reactive variable
+  Rx<User?> currentUser = FirebaseAuth.instance.currentUser.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    // Listen to authentication state changes
+    auth.authStateChanges().listen((User? user) {
+      currentUser.value = user;
+      // If a user is authenticated, navigate to HomePage
+      if (user != null) {
+        Get.offAll(const HomePage());
+      } else {
+        // If no user is authenticated, navigate to Signin
+        Get.offAll(const Signin());
+      }
+    });
+  }
+
+  // Signup code
   void signupUser() async {
     try {
       await auth.createUserWithEmailAndPassword(
@@ -49,7 +67,7 @@ class AuthController extends GetxController {
     }
   }
 
-  //login code
+  // Login code
   void loginUser() async {
     try {
       await auth.signInWithEmailAndPassword(
@@ -89,9 +107,9 @@ class AuthController extends GetxController {
     }
   }
 
-  //log out code
+  // Logout code
   void logOut() async {
     await auth.signOut();
-    //Get.offAll(const Signin());
+    Get.offAll(const Signin());
   }
 }

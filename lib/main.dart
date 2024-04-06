@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sanskriti/controller/auth_controller.dart';
 import 'package:sanskriti/firebase_options.dart';
 import 'package:sanskriti/view/welcome_page.dart';
 import 'view/Admin/admin_home.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    AuthController authController = Get.put(AuthController());
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Sanskriti',

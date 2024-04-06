@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:sanskriti/controller/auth_controller.dart';
 import 'package:sanskriti/utils/app_colors.dart';
+import 'package:sanskriti/view/channel_page.dart';
 import 'package:sanskriti/view/drawer_pages/general_info.dart';
 import 'package:sanskriti/view/profile_page.dart';
 import 'package:sanskriti/view/welcome_page.dart';
@@ -35,6 +36,7 @@ class _HomePageState extends State<HomePage> {
       const HomePageContent(),
       const ExplorePage(),
       const ProfilePage(),
+      ChannelPage(),
     ];
 
     return Scaffold(
@@ -218,8 +220,13 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.person),
             label: 'Profile',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.message_rounded),
+            label: 'Channel',
+          ),
         ],
-        selectedItemColor: AppColors.lightsky,
+        selectedItemColor: AppColors.blue,
+        unselectedItemColor: AppColors.black,
       ),
       body: _pages[_currentIndex],
     );

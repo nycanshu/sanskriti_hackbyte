@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sanskriti/controller/auth_controller.dart';
-import 'package:sanskriti/view/home_screen.dart';
+// import 'package:sanskriti/view/home_screen.dart';
 import 'package:sanskriti/view/sign_up.dart';
 import '../utils/app_colors.dart';
 import '../utils/custom_button.dart';
