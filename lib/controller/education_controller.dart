@@ -7,7 +7,7 @@ class EducationController extends GetxController {
 
   final RxList<EducationCard> educationList = <EducationCard>[].obs;
 
-  int totalEducationData = 0;
+  int get totalEducationData => educationList.length;
 
   @override
   void onInit() {
@@ -17,7 +17,6 @@ class EducationController extends GetxController {
 
   Future<void> fetchData() async {
     await fetchEducationData();
-    totalEducationData = await countEducationData();
 
     //print("Total Education Data: $totalEducationData");
   }

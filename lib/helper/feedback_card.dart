@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class FeedbackCard extends StatelessWidget {
-  final String feedbackTitle;
-  final String feedbackDescription;
+  final String name;
+  final String email;
+  final String feedbackmsg;
 
-  const FeedbackCard({super.key});
+  const FeedbackCard({
+    Key? key,
+    required this.name,
+    required this.email,
+    required this.feedbackmsg,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Container(
         height: 150,
         width: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        //margin: const EdgeInsets.only(bottom: 10),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
@@ -25,31 +31,33 @@ class FeedbackCard extends StatelessWidget {
             ),
           ],
         ),
-        child: const Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Feedback Title',
-              style: TextStyle(
+              "Feedback by : $name",
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(
-              height: 10,
+            const SizedBox(
+              height: 5,
             ),
             Text(
-              'Feedback Description',
-              style: TextStyle(
+              email,
+              style: const TextStyle(
                 fontSize: 16,
               ),
             ),
-            SizedBox(
-              height: 10,
+            const SizedBox(
+              height: 2,
             ),
             Text(
-              'Feedback Date',
-              style: TextStyle(
+              overflow: TextOverflow.ellipsis,
+              feedbackmsg,
+              maxLines: 5,
+              style: const TextStyle(
                 fontSize: 14,
                 color: Colors.grey,
               ),

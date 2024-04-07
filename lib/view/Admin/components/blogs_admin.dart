@@ -99,7 +99,7 @@ class BlogAdmin extends StatelessWidget {
 
     return AlertDialog(
       title: const Text(
-        'Add Education Details',
+        'Add Blog Details',
         style: TextStyle(
           color: Colors.black,
           fontSize: 20,
@@ -133,12 +133,34 @@ class BlogAdmin extends StatelessWidget {
       ),
       actions: [
         ElevatedButton(
+          style: ButtonStyle(
+            fixedSize: MaterialStateProperty.all<Size>(const Size(100, 50)),
+            backgroundColor: MaterialStateProperty.all<Color>(
+              Color.fromARGB(255, 230, 233, 235),
+            ),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+            ),
+          ),
           onPressed: () {
             Navigator.pop(context);
           },
           child: const Text('Cancel'),
         ),
         ElevatedButton(
+          style: ButtonStyle(
+            fixedSize: MaterialStateProperty.all<Size>(const Size(100, 50)),
+            backgroundColor: MaterialStateProperty.all<Color>(
+              Color.fromARGB(255, 129, 193, 235),
+            ),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+            ),
+          ),
           onPressed: () {
             // Create an EducationCard object
             Blog blog = Blog(

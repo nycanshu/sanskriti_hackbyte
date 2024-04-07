@@ -54,11 +54,13 @@ class _EducationAdminState extends State<EducationAdmin> {
             height: 10,
           ),
           const Divider(),
-          Text(
-            "Total Education Data: ${educationController.totalEducationData}",
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+          Obx(
+            () => Text(
+              "Total Education Data: ${educationController.totalEducationData}",
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           const SizedBox(

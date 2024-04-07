@@ -25,21 +25,15 @@ class AdminFeedbackContainer extends StatelessWidget {
                       itemCount: feedBackController.feedbacks.length,
                       itemBuilder: (context, index) {
                         var feedback = feedBackController.feedbacks[index];
-                        return ListTile(
-                          title: Text(feedback.name),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(feedback.email),
-                              Text(feedback.feedback),
-                            ],
-                          ),
+                        return FeedbackCard(
+                          name: feedback.name,
+                          email: feedback.email,
+                          feedbackmsg: feedback.feedback,
                         );
                       },
                     ),
             ),
           ),
-          FeedbackCard(),
         ],
       ),
     );
