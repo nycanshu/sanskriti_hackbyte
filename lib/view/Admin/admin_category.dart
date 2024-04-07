@@ -43,7 +43,7 @@ class AdminCategoriesPage extends StatelessWidget {
       // Add more cases for other categories if needed
       default:
         bodyContent = const Center(
-          child: Text('No content available for this category'),
+          child: Text('There is no content available for this category.'),
         );
     }
 

@@ -11,56 +11,68 @@ class BlogAdmin extends StatelessWidget {
   Widget build(BuildContext context) {
     BlogController blogController = Get.put(BlogController());
     return Scaffold(
-        body: SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return _addEducationDialog(context);
-                  },
-                );
-              },
-              child: const Text(
-                'Add A Blog Details',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+        body: Padding(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ElevatedButton(
+            style: ButtonStyle(
+              fixedSize: MaterialStateProperty.all<Size>(const Size(350, 50)),
+              backgroundColor:
+                  MaterialStateProperty.all(Color.fromARGB(255, 133, 190, 237)),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
                 ),
               ),
             ),
-            const SizedBox(
-              height: 10,
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return _addEducationDialog(context);
+                },
+              );
+            },
+            child: const Text(
+              'Add A Blog Details',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            const Divider(),
-            Text(
-              "Total Education Data: 10",
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const Divider(),
+          Obx(
+            () => Text(
+              "Total Blogs: ${blogController.blogsLength}",
               style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(
-              height: 20,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          const Divider(),
+          const Text(
+            "All Blogs:",
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
             ),
-            const Divider(),
-            const Text(
-              "All Education Data:",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Obx(
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Expanded(
+            child: Obx(
               () => blogController.blogs.isEmpty
                   ? const Center(child: CircularProgressIndicator())
                   : ListView.builder(
@@ -74,8 +86,8 @@ class BlogAdmin extends StatelessWidget {
                       },
                     ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     ));
   }

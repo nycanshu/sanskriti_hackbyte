@@ -8,6 +8,7 @@ class BlogController extends GetxController {
 
   // Define an RxList to store the blogs
   RxList<Blog> blogs = <Blog>[].obs;
+  int get blogsLength => blogs.length;
 
   @override
   void onInit() {

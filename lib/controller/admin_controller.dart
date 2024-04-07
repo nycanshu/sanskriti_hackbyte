@@ -60,7 +60,7 @@ class AdminController extends GetxController {
       "image": "images/education_caticon.png",
     },
     {
-      "title": "Ebooks",
+      "title": "E-books",
       "image": "images/ebook_caticon.png",
     },
     {
@@ -76,7 +76,7 @@ class AdminController extends GetxController {
       "image": "images/blogs_caticon.png",
     },
     {
-      "title": "Feedbacks",
+      "title": "Feedback",
       "image": "images/feedback_caticon.png",
     },
   ];

@@ -17,56 +17,66 @@ class _EducationAdminState extends State<EducationAdmin> {
   Widget build(BuildContext context) {
     EducationController educationController = Get.put(EducationController());
     return Scaffold(
-        body: SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return _addEducationDialog(context);
-                  },
-                );
-              },
-              child: const Text(
-                'Add Education Details',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+        body: Padding(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ElevatedButton(
+            style: ButtonStyle(
+              fixedSize: MaterialStateProperty.all<Size>(const Size(350, 50)),
+              backgroundColor:
+                  MaterialStateProperty.all(Color.fromARGB(255, 133, 190, 237)),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
                 ),
               ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            const Divider(),
-            Text(
-              "Total Education Data: ${educationController.totalEducationData}",
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const Divider(),
-            const Text(
-              "All Education Data:",
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return _addEducationDialog(context);
+                },
+              );
+            },
+            child: const Text(
+              'Add Education Details',
               style: TextStyle(
+                color: Colors.black,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(
-              height: 20,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const Divider(),
+          Text(
+            "Total Education Data: ${educationController.totalEducationData}",
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
             ),
-            Obx(
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          const Divider(),
+          const Text(
+            "All Education Data:",
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Expanded(
+            child: Obx(
               () => educationController.educationList.isEmpty
                   ? const Center(child: CircularProgressIndicator())
                   : ListView.builder(
@@ -86,8 +96,8 @@ class _EducationAdminState extends State<EducationAdmin> {
                       },
                     ),
             ),
-          ],
-        ),
+          )
+        ],
       ),
     ));
   }
@@ -143,9 +153,38 @@ class _EducationAdminState extends State<EducationAdmin> {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: const Text('Cancel'),
+          style: ButtonStyle(
+            fixedSize: MaterialStateProperty.all<Size>(const Size(100, 50)),
+            backgroundColor: MaterialStateProperty.all<Color>(
+              Color.fromARGB(255, 230, 233, 235),
+            ),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+            ),
+          ),
+          child: const Text(
+            'Cancel',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 15,
+              //fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
         ElevatedButton(
+          style: ButtonStyle(
+            fixedSize: MaterialStateProperty.all<Size>(const Size(100, 50)),
+            backgroundColor: MaterialStateProperty.all<Color>(
+              Color.fromARGB(255, 129, 193, 235),
+            ),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+            ),
+          ),
           onPressed: () {
             // Create an EducationCard object
             EducationCard newEducation = EducationCard(
@@ -161,7 +200,14 @@ class _EducationAdminState extends State<EducationAdmin> {
             // Close the dialog
             Navigator.of(context).pop();
           },
-          child: const Text('Add'),
+          child: const Text(
+            'Add',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 15,
+              //fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
       ],
     );

@@ -5,7 +5,8 @@ import 'package:sanskriti/model/ebookmodel.dart';
 class EbookController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  final RxList<EbookData> educationList = <EbookData>[].obs;
+  final RxList<EbookData> ebookList = <EbookData>[].obs;
+  int get ebookdatacount => ebookList.length;
 
   @override
   void onInit() {
@@ -21,10 +22,22 @@ class EbookController extends GetxController {
         final Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
         return EbookData.fromJson(data);
       }).toList();
-      educationList.assignAll(fetchedList);
+      ebookList.assignAll(fetchedList);
     } catch (e) {
       // Handle error
       print("Error fetching 🤔🤔🤔 education data: $e");
+    }
+  }
+
+  //function to add education data
+  Future<void> addEbookData(EbookData ebookData) async {
+    try {
+      final Map<String, dynamic> data = ebookData.toJson();
+      await _firestore.collection('ebook').add(data);
+      ebookList.add(ebookData);
+    } catch (e) {
+      // Handle error
+      print("Error adding education data: $e");
     }
   }
 }
