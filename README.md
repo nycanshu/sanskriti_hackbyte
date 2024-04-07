@@ -20,8 +20,6 @@ Embark on a journey where tradition meets innovation, cultivating creativity in 
 -Video Content, Ebooks, Cultural Notifications, Events section...and meny more.
 -Dedicated Blog website to read blogs about Mythology.
 -Feedback mechanism for better understanding of the users need.
--
-
 
 
 ## Screenshots
@@ -33,9 +31,7 @@ Embark on a journey where tradition meets innovation, cultivating creativity in 
 
   <img src="https://github.com/nycanshu/sanskriti_hackbyte/assets/112685847/a421b9b8-0aac-492c-8001-39a01592f761" alt="dashboard" width="320" style="margin-right: 150px;">
 
-  <img src="(https://github.com/nycanshu/sanskriti_hackbyte/assets/112685847/6374d443-ed9d-4d59-bb98-c909937848ee)" alt="course-list" width="320" style="margin-right: 150px;">
-
-  <img src="(https://github.com/nycanshu/sanskriti_hackbyte/assets/112685847/fb741223-3fa4-4c10-bc26-90c3e65e8c60)" alt="course-desc" width="320" style="margin-right: 150px;">
+  
 
 </p>
 
